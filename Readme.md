@@ -1,4 +1,4 @@
-**Links to two games:**<br/>
+**Links to games:**<br/>
 [Fenced!]()<br/>
 [BlockWay]()<br/>
 
@@ -14,9 +14,9 @@ LunarByte MVVM (Model-ViewModel-View) infrastructure and Zenject.<br/>
 Game configurations(ScriptableObjectInstallers): Are run first. They mostly include Type bindings (pools, settings, etc.).<br/>
 Model Configurations: Are run second. They can be thought as corresponding Model initialization scripts.<br/>
 View Configurations: Are run last. They configure events and bind View methods to Model Property changes. <br/>
-Dataflow: (Model -> ViewModel-> View).<br/>
+Dataflow: (Model -> ViewModel -> View).<br/>
 
 **Content apart from game files:**<br/>
--Dynamic Content, extension to LunarByte MVVM model to include Dynamic Content (multimple similar models bound to multiple similiar views), of which Unity-side implementation is available in the folders.<br/>
--LevelReader tool (used in both games), to convert Exel CSV files to usable ScriptableObject assets inside the game<br/>
--Zenject pooling extensions, implementing Disposable pattern<br/>
+-Dynamic Content. Extension to LunarByte MVVM infrastructure to include Dynamic Content (multimple similar models bound to multiple similiar views), of which Unity-side implementation is available in the folders.<br/>
+-LevelReader tool. Convert Exel CSV files to usable ScriptableObject assets inside the game.<br/>
+-Zenject pooling extensions. Implementing Disposable and IPoolable patterns.<br/>
