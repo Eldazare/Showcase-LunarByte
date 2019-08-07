@@ -1,11 +1,11 @@
 **Links to two games:**<br/>
-[Fenced!]()<br/>
-[BlockWay]()<br/>
+[Fenced!](){:target="_blank"}<br/>
+[BlockWay](){:target="_blank"}<br/>
 
 **About Contents:**<br/>
-Code parts from projects coded under LunarByte, between 3.6.-7.8.2019.<br/>
+Code parts from projects coded under LunarByte, between 3.6.2019 and 9.8.2019.<br/>
 This repository is not a compilable project, but a showcase of my work during this time.<br/>
-(Actual repositories are private for obvious reasons).<br/>
+(Actual repositories are private for obvious reasons.)<br/>
 All files are unedited parts of either game, foldered for convenience.<br/>
 
 **Additional notes on infrastructure used:**<br/>
