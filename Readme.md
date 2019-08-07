@@ -17,6 +17,6 @@ View Configurations: Are run last. They configure events and bind View methods t
 Dataflow: (Model -> ViewModel -> View).<br/>
 
 **Content apart from game files:**<br/>
--Dynamic Content. Extension to LunarByte MVVM infrastructure to include Dynamic Content (multimple similar models bound to multiple similiar views), of which Unity-side implementation is available in the folders.<br/>
+-Dynamic Content. Extension to LunarByte MVVM infrastructure to include Dynamic Content (multiple similar models bound to multiple similiar views), of which Unity-side implementation is available in the folders.<br/>
 -LevelReader tool. Convert Exel CSV files to usable ScriptableObject assets inside the game.<br/>
 -Zenject pooling extensions. Implementing Disposable and IPoolable patterns.<br/>
