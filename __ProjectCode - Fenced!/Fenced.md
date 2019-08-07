@@ -9,7 +9,7 @@ Tile and Wall pools are bound here. <br/>
 PoolablePoolContainer contains pools for each prefab given to it. This way we can pool different objects without having to address them by type (only by index). This is why it's important to have....<br/>
 
 **PrefabSettingsWall.cs**<br/>
-Determined in Unity Editor.<br/>
+Content determined in Unity Editor.<br/>
 Makes sure that A specific prefab is bound to specific Char used in LevelDefinition CSV-files.<br/>
 -> We can be sure that specific Char index is equal to specific prefab index.<br/>
 Also holds initial pool sizes for each object.<br/>
