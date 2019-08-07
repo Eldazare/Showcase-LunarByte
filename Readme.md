@@ -1,6 +1,6 @@
 **Links to two games:**<br/>
-[Fenced!](){:target="_blank"}<br/>
-[BlockWay](){:target="_blank"}<br/>
+[Fenced!]()<br/>
+[BlockWay]()<br/>
 
 **About Contents:**<br/>
 Code parts from projects coded under LunarByte, between 3.6.2019 and 9.8.2019.<br/>
