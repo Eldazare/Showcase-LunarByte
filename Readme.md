@@ -9,11 +9,12 @@ Organization: LunarByte<br/>
 (Actual repositories are private for obvious reasons.)<br/>
 Files: Unedited and organized for viewing
 
-**Additional notes on infrastructure used:**<br/>
+**Notes on infrastructure and different configurations:**<br/>
 LunarByte MVVM (Model-ViewModel-View) infrastructure and Zenject.<br/>
 Game configurations(ScriptableObjectInstallers): Are run first. They mostly include Type bindings (pools, settings, etc.).<br/>
 Model Configurations: Are run second. They can be thought as corresponding Model initialization scripts.<br/>
-View Configurations: Are run last. They configure events and bind Model Property changes to View Methods (Model -> ViewModel-> View).<br/>
+View Configurations: Are run last. They configure events and bind View methods to Model Property changes. <br/>
+Dataflow: (Model -> ViewModel-> View).<br/>
 
 **Content apart from game files:**<br/>
 -Dynamic Content, extension to LunarByte MVVM model to include Dynamic Content (multimple similar models bound to multiple similiar views), of which Unity-side implementation is available in the folders.<br/>
