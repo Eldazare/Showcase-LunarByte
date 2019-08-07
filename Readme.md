@@ -10,10 +10,9 @@ All files are unedited parts of either game, foldered for convenience.<br/>
 
 **Additional notes on infrastructure used:**<br/>
 Projects utilized mostly Zenject and LunarByte MVVM (Model-ViewModel-View) infrastructure.<br/>
-Notes on Configurations:<br/>
-Game configurations are run first. They mostly include Type bindings (pools, settings, etc.).<br/>
-Model Configurations are Model initialization scripts.<br/>
-View Configurations configure events and Model Property changes to View Methods (Model -> ViewModel-> View).<br/>
+Game configurations: Are run first. They mostly include Type bindings (pools, settings, etc.).<br/>
+Model Configurations: Are run second. They can be thought as corresponding Model initialization scripts.<br/>
+View Configurations: Are run last. They configure events and bind Model Property changes to View Methods (Model -> ViewModel-> View).<br/>
 
 **Content apart from game files:**<br/>
 -Dynamic Content, extension to LunarByte MVVM model to include Dynamic Content (multimple similar models bound to multiple similiar views), of which Unity-side implementation is available in the folders.<br/>
