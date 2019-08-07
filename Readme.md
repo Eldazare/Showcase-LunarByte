@@ -4,7 +4,7 @@
 
 **About:**<br/>
 Type: Code Showcase<br/>
-Timeperiod: 3.6.-9.8.2019.<br/>
+Span: 3.6.-9.8.2019.<br/>
 Organization: LunarByte<br/>
 (Actual repositories are private for obvious reasons.)<br/>
 Files: Unedited and organized for viewing
