@@ -57,7 +57,7 @@ public class LevelViewModelWall : ViewModel, ILevelViewModelWall
 
     public Event<int, Action> AttemptRemoveAllKeysEvent = new Event<int, Action>();
 
-	public IDispatchableEvent<int, Action> AttemptRemoveAllKeys {  get { return AttemptRemoveAllKeysEvent; } }
+    public IDispatchableEvent<int, Action> AttemptRemoveAllKeys {  get { return AttemptRemoveAllKeysEvent; } }
 }
 
 public interface ILevelViewModelWall
