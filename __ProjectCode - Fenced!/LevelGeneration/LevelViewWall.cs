@@ -145,8 +145,8 @@ public class LevelViewWall : View<ILevelViewModelWall>
                 LevelTiles.Add(tile);
             }
         }
-		BlackFloorParent.gameObject.SetActive(true);
-		BlackFloorParent.transform.localScale = new Vector3(Size, 1, Size);
+	BlackFloorParent.gameObject.SetActive(true);
+	BlackFloorParent.transform.localScale = new Vector3(Size, 1, Size);
     }
 
     private void GenerateWalls()
@@ -176,26 +176,26 @@ public class LevelViewWall : View<ILevelViewModelWall>
 
     private void SearchForLevelEndDoor()
     {
-	    foreach (var wall in LevelWalls)
-	    {
-		    if (wall.GetType() == typeof(WallEndLevelDoor))
-		    {
-			    EndDoor = (WallEndLevelDoor)wall;
+	foreach (var wall in LevelWalls)
+	{
+		if (wall.GetType() == typeof(WallEndLevelDoor))
+		{
+			EndDoor = (WallEndLevelDoor)wall;
 
-			    return;
-		    }
-	    }
-		Debug.LogError("Level did not contain EndLevelDoor.");
+			return;
+		}
+	}
+	Debug.LogError("Level did not contain EndLevelDoor.");
     }
 
     public void AttemptRemoveEndDoorKeys(int levelEndKeyIndex)
     {
-	    ViewModel.AttemptRemoveAllKeys.Dispatch(levelEndKeyIndex, OpenEndDoor);
+	ViewModel.AttemptRemoveAllKeys.Dispatch(levelEndKeyIndex, OpenEndDoor);
     }
 
     private void OpenEndDoor()
     {
-		EndDoor.OpenDoor();
+	EndDoor.OpenDoor();
     }
 
     public void LevelDataChanged(ILevelDataWall levelData)
