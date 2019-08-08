@@ -10,10 +10,10 @@ using TMPro;
 
 public class LevelView : View<ILevelViewModel>
 {
-	[Inject]         private readonly LevelObjectFactory LevelObjectFactory;
-	[SerializeField] private          GameObject         LevelUI;
-	[SerializeField] private          GameObject         MainMenuUI;
-	[SerializeField] private          Transform          SawParent;
+    [Inject]         private LevelObjectFactory LevelObjectFactory;
+    [SerializeField] private GameObject LevelUI;
+    [SerializeField] private GameObject MainMenuUI;
+    [SerializeField] private Transform SawParent;
     [SerializeField] private Button StartButton;
     [SerializeField] private Transform Scroller;
     private int ObjectCount;
@@ -26,10 +26,10 @@ public class LevelView : View<ILevelViewModel>
 
     // Background
     [SerializeField] private GameObject GroundPrefab;
-	[HideInInspector] public float GroundLength;
-	private GameObject[] GroundTiles;
-	private float DistanceTravelled;
-	private int ActiveTileIndex;
+    [HideInInspector] public float GroundLength;
+    private GameObject[] GroundTiles;
+    private float DistanceTravelled;
+    private int ActiveTileIndex;
 
     // Feedback Text
     [SerializeField] private GameObject LevelFailTextPrefab;
@@ -37,23 +37,23 @@ public class LevelView : View<ILevelViewModel>
     [SerializeField] private GameObject SuperSawTextPrefab;
     private bool ValuesSet;
 
-	// Color Settings
-	[SerializeField] private Material BasicObjectMaterial;
-	[SerializeField] private Material SuperObjectMaterial;
-	[SerializeField] private Color[] BasicColors;
+    // Color Settings
+    [SerializeField] private Material BasicObjectMaterial;
+    [SerializeField] private Material SuperObjectMaterial;
+    [SerializeField] private Color[] BasicColors;
 
-	public void OnBasicColorChanged(int color)
-	{
+    public void OnBasicColorChanged(int color)
+    {
 		OnColorChanged(color, BasicObjectMaterial);
-	}
+    }
 
-	public void OnSuperColorChanged(int color)
-	{
+    public void OnSuperColorChanged(int color)
+    {
 		OnColorChanged(color, SuperObjectMaterial);
-	}
+    }
 
-	private void OnColorChanged(int color, Material material)
-	{
+    private void OnColorChanged(int color, Material material)
+    {
 		if (BasicColors.Length == 0 || color < 0)
 		{
 			return;
@@ -62,9 +62,9 @@ public class LevelView : View<ILevelViewModel>
     }
 
     protected override void OnViewAwake()
-	{
+    {
 		StartButton.onClick.AddListener(() => OnLevelStateChange(LevelState.Play));
-	}
+    }
 
     protected override void OnViewStart()
     {
@@ -80,69 +80,69 @@ public class LevelView : View<ILevelViewModel>
     }
 
     public void StartLevel()
-	{
-		ClearLevelObjects();
-		SetStartButtonState(true);
-		MainMenuUI.SetActive(false);
-		LevelUI.SetActive(true);
-		ViewModel.GenerateLevel.Dispatch();
+    {
+	ClearLevelObjects();
+	SetStartButtonState(true);
+	MainMenuUI.SetActive(false);
+	LevelUI.SetActive(true);
+	ViewModel.GenerateLevel.Dispatch();
     }
 
     public void ResetLevelUI(bool levelActive)
     {
-	    MainMenuUI.SetActive(!levelActive);
-	    LevelUI.SetActive(levelActive);
+	MainMenuUI.SetActive(!levelActive);
+	LevelUI.SetActive(levelActive);
     }
 
     public void OnLevelStateChange(LevelState levelState)
     {
-	    if (levelState == LevelState.Restart)
+	if (levelState == LevelState.Restart)
+	{
+	    ResetLevelUI(false);
+	    ClearLevelObjects();
+	    SetStartButtonState(true);
+	    return;
+	}
+	if (levelState.IsPaused())
+	{
+	    if (ValuesSet)
 	    {
-		    ResetLevelUI(false);
-		    ClearLevelObjects();
-		    SetStartButtonState(true);
-		    return;
+		MainMenuUI.SetActive(false);
+		LevelUI.SetActive(false);
 	    }
-	    if (levelState.IsPaused())
-	    {
-		    if (ValuesSet)
-		    {
-			    MainMenuUI.SetActive(false);
-			    LevelUI.SetActive(false);
-            }
-		    return;
-	    }
+	    return;
+	}
         ResetLevelUI(true);
-	    ViewModel.GenerateLevel.Dispatch();
+	ViewModel.GenerateLevel.Dispatch();
     }
 
     public void SetStartButtonState(bool state)
+    {
+	if (state)
 	{
-		if (state)
-		{
-			StopAllCoroutines();
-			EndLevel();
-		}
-		StartButton.gameObject.SetActive(state);
+	    StopAllCoroutines();
+	    EndLevel();
 	}
+	StartButton.gameObject.SetActive(state);
+    }
 
-	private void ClearLevelObjects()
-	{
-		StopAllCoroutines();
-		LevelObject[] levelObjects = Scroller.GetComponentsInChildren<LevelObject>();
+    private void ClearLevelObjects()
+    {
+	StopAllCoroutines();
+	LevelObject[] levelObjects = Scroller.GetComponentsInChildren<LevelObject>();
 
         for (var i = 0; i < levelObjects.Length; i++)
-		{
-			levelObjects[i].gameObject.Recycle();
-		}
-	}
-
-	public void EndLevel()
 	{
-		SetStartButtonState(false);
-		MainMenuUI.SetActive(true);
-		LevelUI.SetActive(false);
+		levelObjects[i].gameObject.Recycle();
 	}
+    }
+
+    public void EndLevel()
+    {
+	SetStartButtonState(false);
+	MainMenuUI.SetActive(true);
+	LevelUI.SetActive(false);
+    }
 
     public void ShowEndText(bool active)
     {
@@ -170,52 +170,52 @@ public class LevelView : View<ILevelViewModel>
     }
 
     private void Update()
+    {
+	if (ViewModel.LevelState != LevelState.PauseFail)
 	{
-		if (ViewModel.LevelState != LevelState.PauseFail)
-		{
-			Move();
-		}
-		CheckGround();
+	    Move();
 	}
-
-	private void Move()
-	{
-		float distance = ViewModel.ScrollSpeed * Time.deltaTime;
-		DistanceTravelled += distance;
-		SawParent.position += Vector3.forward * distance;
+	CheckGround();
     }
 
-	private void CheckGround()
+    private void Move()
+    {
+	float distance = ViewModel.ScrollSpeed * Time.deltaTime;
+	DistanceTravelled += distance;
+	SawParent.position += Vector3.forward * distance;
+    }
+
+    private void CheckGround()
+    {
+	if (DistanceTravelled >= GroundLength)
 	{
-		if (DistanceTravelled >= GroundLength)
-		{
-			DistanceTravelled -= GroundLength;
-			GroundTiles[ActiveTileIndex].transform.position += Vector3.forward * GroundLength * GroundTiles.Length;
-			ActiveTileIndex = (ActiveTileIndex + 1) % GroundTiles.Length;
-		}
+	    DistanceTravelled -= GroundLength;
+	    GroundTiles[ActiveTileIndex].transform.position += Vector3.forward * GroundLength * GroundTiles.Length;
+	    ActiveTileIndex = (ActiveTileIndex + 1) % GroundTiles.Length;
 	}
+    }
 
-	public void OnLevelChanged(LevelObjectType[] levelObjectTypeContainer)
+    public void OnLevelChanged(LevelObjectType[] levelObjectTypeContainer)
+    {
+	if (ViewModel == null)
 	{
-		if (ViewModel == null)
-		{
-			return;
-		}
-		Vector3 spawnOrigin = SawParent.transform.position;
-		spawnOrigin.y = 0;
+	    return;
+	}
+	Vector3 spawnOrigin = SawParent.transform.position;
+	spawnOrigin.y = 0;
 
-        // Timing.RunCoroutine(_SpawnLevelObjects(levelObjectTypeContainer, spawnOrigin));
-        if (levelObjectTypeContainer != null)
+	// Timing.RunCoroutine(_SpawnLevelObjects(levelObjectTypeContainer, spawnOrigin));
+	if (levelObjectTypeContainer != null)
         {
-	        SpawnLevelObjects(levelObjectTypeContainer, spawnOrigin);
+	    SpawnLevelObjects(levelObjectTypeContainer, spawnOrigin);
         }
     }
 
-	private void SpawnLevelObjects(LevelObjectType[] levelObjectTypeContainer, Vector3 spawnOrigin)
-	{
-        int objectCount = levelObjectTypeContainer.Length;
+    private void SpawnLevelObjects(LevelObjectType[] levelObjectTypeContainer, Vector3 spawnOrigin)
+    {
+	int objectCount = levelObjectTypeContainer.Length;
 
-        int gridWidth = ViewModel.GridWidth; // Number of objects per slot in X-axis
+	int gridWidth = ViewModel.GridWidth; // Number of objects per slot in X-axis
         float widthMultiplier = LevelWidth / ViewModel.GridWidth;
         float edge = widthMultiplier / 2.0f; // from center to "edge" of a slot, essentially half a slot
         float gridLeftStartPos = -LevelWidth / 2.0f + edge; // Start "Left" X-axis position of Slots
@@ -225,7 +225,7 @@ public class LevelView : View<ILevelViewModel>
         spawnData.SetIndependentData(widthMultiplier, SlotWidth, edge);
 
         for (var i = 0; i < objectCount; i++)
-		{
+	{
             spawnData.SetIndexDependentData(i, gridLeftStartPos, gridWidth, widthMultiplier);
             SpawnLevelObject(levelObjectTypeContainer[i], spawnOrigin, spawnData);
         }
@@ -234,8 +234,8 @@ public class LevelView : View<ILevelViewModel>
         SpawnLevelObject(LevelObjectType.EndLevelBlock, spawnOrigin, spawnData);
     }
 
-	private IEnumerator<float> _SpawnLevelObjects(LevelObjectType[] levelObjectTypeContainer, Vector3 spawnOrigin)
-	{
+    private IEnumerator<float> _SpawnLevelObjects(LevelObjectType[] levelObjectTypeContainer, Vector3 spawnOrigin)
+    {
         int objectCount = levelObjectTypeContainer.Length;
 
         int gridWidth = ViewModel.GridWidth; // Number of objects per slot in X-axis
@@ -263,30 +263,37 @@ public class LevelView : View<ILevelViewModel>
         {
             case LevelObjectType.Hay:
             case LevelObjectType.SuperHay:
-                for (float xAdjust = sd.startAdjustment; xAdjust < sd.edge; xAdjust += sd.distanceBetween)
-                {
-                    for (float zAdjust = sd.startAdjustment; zAdjust < sd.edge; zAdjust += sd.distanceBetween)
-                    {
-                        sd.positionModifications = new Vector3(
-                                             sd.modifiedPositionIndex + xAdjust,
-                                             0,
-                                             SpawnDistance + sd.modifiedHeight + zAdjust);
-                        CreateLevelObject(spawnOrigin, sd.positionModifications, levelObjectType, sd.objectIndex);
-                    }
-                }
+		for (float xAdjust = sd.startAdjustment; xAdjust < sd.edge; xAdjust += sd.distanceBetween)
+		{
+		    for (float zAdjust = sd.startAdjustment; zAdjust < sd.edge; zAdjust += sd.distanceBetween)
+		    {
+		        sd.positionModifications = new Vector3(
+				sd.modifiedPositionIndex + xAdjust,
+				0,
+				SpawnDistance + sd.modifiedHeight + zAdjust);
+				
+		        CreateLevelObject(spawnOrigin, sd.positionModifications, levelObjectType, sd.objectIndex);
+		    }
+		}
 
                 break;
+		
             case LevelObjectType.EndLevelBlock:
-                sd.positionModifications = new Vector3(sd.modifiedPositionIndex,
-                                                    0,
-                                                    SpawnDistance + sd.modifiedHeight + LevelEndBlockDistance);
+                sd.positionModifications = new Vector3(
+				sd.modifiedPositionIndex,
+				0,
+				SpawnDistance + sd.modifiedHeight + LevelEndBlockDistance);
+				
                 CreateLevelObject(spawnOrigin, sd.positionModifications, levelObjectType, sd.objectIndex);
 
                 break;
+		
             case LevelObjectType.Rock:
-                sd.positionModifications = new Vector3(sd.modifiedPositionIndex,
-                                                    0,
-                                                    SpawnDistance + sd.modifiedHeight);
+                sd.positionModifications = new Vector3(
+				sd.modifiedPositionIndex,
+				0,
+				SpawnDistance + sd.modifiedHeight);
+				
                 CreateLevelObject(spawnOrigin, sd.positionModifications, levelObjectType, sd.objectIndex);
 
                 break;
