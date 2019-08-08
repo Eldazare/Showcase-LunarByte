@@ -13,7 +13,7 @@ public class LevelGameConfig : ScriptableObjectInstaller
     {
         Debug.Log($"Configuring {nameof(LevelGameConfig)}");
         PrefabSettings.AssertNotNull();
-		PrefabSettings.OnValidate();
+	PrefabSettings.OnValidate();
 
         Container.BindPoolContainer<TileBase, TileBaseFactory>(PrefabSettings.TilePrefabList, PrefabSettings.TilePoolInitialSizes);
         Container.BindPoolContainer<WallBase, WallBaseFactory>(PrefabSettings.WallPrefabList, PrefabSettings.WallPoolInitialSizes);
@@ -38,14 +38,13 @@ public static class ContainerExtensionsWall
 {
     public static void BindPoolContainer<TPoolable, PoolFactory>(this DiContainer container, GameObject[] prefabList, int[] initialPoolSizes)
         where TPoolable : PoolableMonoBehaviour
-    where PoolFactory : PlaceholderFactory<int, TPoolable>
+    	where PoolFactory : PlaceholderFactory<int, TPoolable>
     {
 
         PoolablePoolContainer<TPoolable> poolContainer = new PoolablePoolContainer<TPoolable>(prefabList, container, initialPoolSizes);
 
         container.BindFactory<int, TPoolable, PoolFactory>()
-                 .FromMethod((cont, index) =>
-                                 poolContainer.SpawnFromPool(index));
+                 .FromMethod((cont, index) => poolContainer.SpawnFromPool(index));
 
         container.Bind<IInitializable>().To<PoolablePoolContainer<TPoolable>>().FromInstance(poolContainer);
     }
