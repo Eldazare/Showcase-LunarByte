@@ -5,105 +5,105 @@ using UnityEngine;
 
 public class SawModel : Model, ISawModel
 {
-	private float SawAutoSpeedField;
-	private float SawCurveField;
-	private float SawPosField;
-	private float SawRotationSpeedField;
+    private float SawAutoSpeedField;
+    private float SawCurveField;
+    private float SawPosField;
+    private float SawRotationSpeedField;
 
-	private int SuperHayContainerMaxField;
-	private float SuperSawScaleMultiplierField;
-	private float SawScaleBaseField;
-	private float SuperSawDurationField;
+    private int SuperHayContainerMaxField;
+    private float SuperSawScaleMultiplierField;
+    private float SawScaleBaseField;
+    private float SuperSawDurationField;
 
     public int SuperHayContainerMax
+    {
+	get { return SuperHayContainerMaxField; }
+	set
 	{
-		get { return SuperHayContainerMaxField; }
-		set
-		{
-			SuperHayContainerMaxField = value;
-			OnPropertyChanged();
-		}
+	    SuperHayContainerMaxField = value;
+	    OnPropertyChanged();
 	}
-	public float SuperSawScaleMultiplier
+    }
+    public float SuperSawScaleMultiplier
+    {
+	get { return SuperSawScaleMultiplierField; }
+	set
 	{
-		get { return SuperSawScaleMultiplierField; }
-		set
-		{
-			SuperSawScaleMultiplierField = value;
-			OnPropertyChanged();
-		}
+	    SuperSawScaleMultiplierField = value;
+	    OnPropertyChanged();
 	}
+    }
 
-	public float SawScaleBase
+    public float SawScaleBase
+    {
+	get { return SawScaleBaseField; }
+	set
 	{
-		get { return SawScaleBaseField; }
-		set
-		{
-			SawScaleBaseField = value;
-			OnPropertyChanged();
-		}
+	    SawScaleBaseField = value;
+	    OnPropertyChanged();
 	}
+    }
 
-	public float SuperSawDuration
+    public float SuperSawDuration
+    {
+	get { return SuperSawDurationField; }
+	set
 	{
-		get { return SuperSawDurationField; }
-		set
-		{
-			SuperSawDurationField = value;
-			OnPropertyChanged();
-		}
+	    SuperSawDurationField = value;
+	    OnPropertyChanged();
 	}
+    }
 
-	public float SawAutoSpeed
+    public float SawAutoSpeed
+    {
+	get { return SawAutoSpeedField; }
+	set
 	{
-		get { return SawAutoSpeedField; }
-		set
-		{
-			SawAutoSpeedField = value;
-			OnPropertyChanged();
-		}
+	    SawAutoSpeedField = value;
+	    OnPropertyChanged();
 	}
+    }
 
-	public float SawCurve
+    public float SawCurve
+    {
+	get { return SawCurveField; }
+	set
 	{
-		get { return SawCurveField; }
-		set
-		{
-			SawCurveField = value;
-			OnPropertyChanged();
-		}
+	    SawCurveField = value;
+	    OnPropertyChanged();
 	}
+    }
 
-	public float SawPos
+    public float SawPos
+    {
+	get { return SawPosField; }
+	set
 	{
-		get { return SawPosField; }
-		set
-		{
-			SawPosField = value;
-			OnPropertyChanged();
-		}
+	    SawPosField = value;
+	    OnPropertyChanged();
 	}
+    }
 
-	public float SawRotationSpeed
+    public float SawRotationSpeed
+    {
+	get { return SawRotationSpeedField; }
+	set
 	{
-		get { return SawRotationSpeedField; }
-		set
-		{
-			SawRotationSpeedField = value;
-			OnPropertyChanged();
-		}
+	    SawRotationSpeedField = value;
+	    OnPropertyChanged();
+	}
     }
 }
 
 public interface ISawModel : IObservableProperties
 {
-	int   SuperHayContainerMax { get; }
-	float SuperSawScaleMultiplier { get; }
-	float SawScaleBase { get; }
+    int   SuperHayContainerMax { get; }
+    float SuperSawScaleMultiplier { get; }
+    float SawScaleBase { get; }
     float SuperSawDuration { get; }
 
     float SawAutoSpeed { get; }
-	float SawCurve { get; }
-	float SawPos { get; }
-	float SawRotationSpeed { get; }
+    float SawCurve { get; }
+    float SawPos { get; }
+    float SawRotationSpeed { get; }
 }
