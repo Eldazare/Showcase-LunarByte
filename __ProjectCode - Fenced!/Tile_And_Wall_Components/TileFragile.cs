@@ -15,17 +15,17 @@ public class TileFragile : TileBase
     private bool TileDropped;
     private int CurrentSteps;
 
-	// Tile drop animation
-	[SerializeField] private float TileDropTime = 1.0f;
-	[SerializeField] private AnimationCurve TileDropAnimationCurve;
-	private Material TileMaterial;
-	private static readonly string TileShaderDropKeyword = "_SliceAmount";
-	private Coroutine TileDropCoroutine;
-	private float ElapsedTime;
+    // Tile drop animation
+    [SerializeField] private float TileDropTime = 1.0f;
+    [SerializeField] private AnimationCurve TileDropAnimationCurve;
+    private Material TileMaterial;
+    private static readonly string TileShaderDropKeyword = "_SliceAmount";
+    private Coroutine TileDropCoroutine;
+    private float ElapsedTime;
 
     private void Start()
     {
-	    TileMaterial = TileRenderer.material;
+	TileMaterial = TileRenderer.material;
         RevertRuntimeChanges();
     }
 
@@ -67,28 +67,28 @@ public class TileFragile : TileBase
 
     void OnEnable()
     {
-	    if (TileDropCoroutine != null)
-	    {
-		    StartCoroutine(_AnimateTileDrop(false));
-	    }
+	if (TileDropCoroutine != null)
+	{
+	    StartCoroutine(_AnimateTileDrop(false));
+	}
     }
 
 
     private IEnumerator _AnimateTileDrop(bool resetElapsedTime = true)
     {
-	    if (resetElapsedTime)
-	    {
-		    ElapsedTime = 0.0f;
-	    }
+	if (resetElapsedTime)
+	{
+	    ElapsedTime = 0.0f;
+	}
 
-	    while (ElapsedTime < TileDropTime)
-	    {
-		    ElapsedTime += Time.deltaTime;
-			TileMaterial.SetFloat(TileShaderDropKeyword, TileDropAnimationCurve.Evaluate(ElapsedTime / TileDropTime));
-		    yield return 0;
-	    }
-	    TileRenderer.enabled = false;
-	    SolidChildCollider.enabled = true;
-	    TileDropCoroutine = null;
+	while (ElapsedTime < TileDropTime)
+	{
+	    ElapsedTime += Time.deltaTime;
+	    TileMaterial.SetFloat(TileShaderDropKeyword, TileDropAnimationCurve.Evaluate(ElapsedTime / TileDropTime));
+	    yield return 0;
+	}
+	TileRenderer.enabled = false;
+	SolidChildCollider.enabled = true;
+	TileDropCoroutine = null;
     }
 }
