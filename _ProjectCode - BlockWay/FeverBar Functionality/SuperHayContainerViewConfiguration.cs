@@ -10,10 +10,12 @@ public class SuperHayContainerViewConfiguration : ViewConfiguration<ISuperHayCon
 	protected override void Configure(SuperHayContainerViewModel viewModel, SuperHayContainerView view, PlayerModel model, SawModel sawModel)
 	{
 		
-		viewModel.Bind<SuperHayContainerViewModel, float>(fillPercentage => viewModel.FillPercentage = fillPercentage).To(model, m => m.SuperHayCollected, nameof(PlayerModel.SuperHayCollected))
-		         .UsingConverter((int x) => (float) x / sawModel.SuperHayContainerMax);
+		viewModel.Bind<SuperHayContainerViewModel, float>(fillPercentage => viewModel.FillPercentage = fillPercentage)
+			.To(model, m => m.SuperHayCollected, nameof(PlayerModel.SuperHayCollected))
+			.UsingConverter((int x) => (float) x / sawModel.SuperHayContainerMax);
 
 
-		view.Bind<SuperHayContainerView, float>(view.SetFillAmount).ToProperty(viewModel, vm => vm.FillPercentage, nameof(SuperHayContainerViewModel.FillPercentage));
+		view.Bind<SuperHayContainerView, float>(view.SetFillAmount)
+			.ToProperty(viewModel, vm => vm.FillPercentage, nameof(SuperHayContainerViewModel.FillPercentage));
 	}
 }
