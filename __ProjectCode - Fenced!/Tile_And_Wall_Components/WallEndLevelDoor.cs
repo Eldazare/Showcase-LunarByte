@@ -9,40 +9,40 @@ public class WallEndLevelDoor : WallBase, ICollidableDoor
     [SerializeField] private MeshRenderer DoorMeshRenderer;
 
 
-	// Fade "Animation"
-	[SerializeField] private float DoorFadeTime;
-	[SerializeField] private AnimationCurve DoorFadeAnimationCurve;
+    // Fade "Animation"
+    [SerializeField] private float DoorFadeTime;
+    [SerializeField] private AnimationCurve DoorFadeAnimationCurve;
     private Coroutine DoorFadeCoroutine;
-	private float ElapsedTime;
-	private Material DoorMaterial;
-	private static readonly string TileShaderDropKeyword = "_SliceAmount";
+    private float ElapsedTime;
+    private Material DoorMaterial;
+    private static readonly string TileShaderDropKeyword = "_SliceAmount";
 
     // Door functionality
     public int KeyIndex { get { return KeyIndexField; } }
-	private bool Opened = false;
+    private bool Opened = false;
 
-	void Start()
-	{
-		DoorMaterial = DoorMeshRenderer.material;
+    void Start()
+    {
+	DoorMaterial = DoorMeshRenderer.material;
     }
 
     public void OnEncounter(PlayerView playerView)
     {
-	    if (!Opened)
-	    {
-		    return;
-	    }
-	    DoorCollider.enabled = false;
-	    DoorMeshRenderer.enabled = false;
+	if (!Opened)
+	{
+	    return;
+	}
+	DoorCollider.enabled = false;
+	DoorMeshRenderer.enabled = false;
         playerView.ResetDrawInputMovement();
-	    playerView.EndGame();
+	playerView.EndGame();
     }
 
-	// Called by LevelView
+    // Called by LevelView
     public void OpenDoor()
     {
-	    Opened = true;
-	    DoorFadeCoroutine = StartCoroutine(_AnimateDoorFade(true));
+	Opened = true;
+	DoorFadeCoroutine = StartCoroutine(_AnimateDoorFade(true));
     }
 
     protected override void RevertRuntimeChanges()
@@ -57,27 +57,27 @@ public class WallEndLevelDoor : WallBase, ICollidableDoor
 
     void OnEnable()
     {
-	    if (DoorFadeCoroutine != null)
-	    {
-		    StartCoroutine(_AnimateDoorFade(false));
-	    }
+	if (DoorFadeCoroutine != null)
+	{
+	    StartCoroutine(_AnimateDoorFade(false));
+	}
     }
 
 
     private IEnumerator _AnimateDoorFade(bool resetElapsedTime = true)
     {
-	    if (resetElapsedTime)
-	    {
-		    ElapsedTime = 0.0f;
-	    }
+	if (resetElapsedTime)
+	{
+	    ElapsedTime = 0.0f;
+	}
 
-	    while (ElapsedTime < DoorFadeTime)
-	    {
-		    ElapsedTime += Time.deltaTime;
-		    DoorMaterial.SetFloat(TileShaderDropKeyword, DoorFadeAnimationCurve.Evaluate(ElapsedTime / DoorFadeTime));
-		    yield return 0;
-	    }
-	    DoorFadeCoroutine = null;
-	    DoorMeshRenderer.enabled = false;
+	while (ElapsedTime < DoorFadeTime)
+	{
+	    ElapsedTime += Time.deltaTime;
+	    DoorMaterial.SetFloat(TileShaderDropKeyword, DoorFadeAnimationCurve.Evaluate(ElapsedTime / DoorFadeTime));
+	    yield return 0;
+	}
+	DoorFadeCoroutine = null;
+	DoorMeshRenderer.enabled = false;
     }
 }
