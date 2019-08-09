@@ -24,3 +24,11 @@ Also implements recurring calls for certain time, basically requiring Coroutines
 
 **Additionally...**<br/>
 I replicated level selection code from Fenced with minor changes to fit the project.<br/>
+
+
+Pictures:<br/>
+*Fever mode:*<br/>
+![FeverMode](https://github.com/Eldazare/Showcase-LunarByte/blob/master/_ReferencePictures/BlockWay/BlockWay_LevelGeneration.PNG)
+
+*LevelGeneration:*<br/>
+![LevelGeneration](https://github.com/Eldazare/Showcase-LunarByte/blob/master/_ReferencePictures/BlockWay/BlockWay_LevelGeneration.PNG)
