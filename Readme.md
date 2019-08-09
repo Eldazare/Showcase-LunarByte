@@ -7,7 +7,7 @@ Type: Code Showcase<br/>
 Span: 3.6.-9.8.2019.<br/>
 Organization: [LunarByte](https://lunarbyte.com/)<br/>
 (Actual project repositories are private for obvious reasons.)<br/>
-Folders: **Numbered folders** contain showcase code.<br/>
+Folders: **_Numbered folders_** contain showcase code.<br/>
 
 **Notes on infrastructure and different configurations:**<br/>
 -LunarByte MVVM (Model-ViewModel-View) infrastructure and Zenject.<br/>
