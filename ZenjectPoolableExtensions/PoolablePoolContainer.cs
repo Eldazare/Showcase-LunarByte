@@ -18,8 +18,8 @@ public class PoolablePoolContainer<T> : IInitializable
     private GameObject Prefab;
 
     public PoolablePoolContainer(GameObject[] prefabs,
-                         DiContainer container,
-                         int[] initialPoolSizes)
+                                DiContainer container,
+                                int[] initialPoolSizes)
     {
         Pools = new List<MemoryPool<T>>();
         PrefabList = prefabs;
