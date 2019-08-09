@@ -80,10 +80,6 @@ public class PoolableViewPool<TViewModel, T> : MonoMemoryPool<TViewModel, T>
 	}
 }
 
-
-
-
-// Found, seemed to do job fine
 public class ComponentFromPrefabFactory<T> : IFactory<T>
 	where T : Component
 {
