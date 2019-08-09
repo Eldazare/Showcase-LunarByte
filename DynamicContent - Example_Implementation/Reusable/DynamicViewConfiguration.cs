@@ -4,9 +4,7 @@ using LunarByte.MVVM;
 using LunarByte.MVVM.Configurations;
 using UnityEngine;
 
-public abstract class
-    DynamicViewConfiguration<TModelContainer, TViewModelContainer,
-                             TViewContainer> : ViewConfiguration
+public abstract class DynamicViewConfiguration<TModelContainer, TViewModelContainer, TViewContainer> : ViewConfiguration
 {
     public override void InstallBindings()
     {
@@ -25,9 +23,7 @@ public abstract class
                                       TViewContainer viewContainer);
 }
 
-public abstract class
-    DynamicViewConfiguration<TModelContainer, TViewModelContainer,
-                             TViewContainer, TDependency1> : ViewConfiguration
+public abstract class DynamicViewConfiguration<TModelContainer, TViewModelContainer, TViewContainer, TDependency1> : ViewConfiguration
 {
     public override void InstallBindings()
     {
@@ -47,9 +43,7 @@ public abstract class
                                       TDependency1 dependency1);
 }
 
-public abstract class
-    DynamicViewConfiguration<TModelContainer, TViewModelContainer,
-                             TViewContainer, TDependency1, TDependency2> : ViewConfiguration
+public abstract class DynamicViewConfiguration<TModelContainer, TViewModelContainer, TViewContainer, TDependency1, TDependency2> : ViewConfiguration
 {
     public override void InstallBindings()
     {
@@ -71,8 +65,7 @@ public abstract class
                                       TDependency2 factory);
 }
 
-public abstract class
-    DynamicViewConfiguration<TModelContainer, TViewModelContainer,
+public abstract class DynamicViewConfiguration<TModelContainer, TViewModelContainer,
                              TViewContainer, TDependency1, TDependency2,
                              TDependency3> : ViewConfiguration
 {
@@ -97,8 +90,7 @@ public abstract class
                                       TDependency3 dependency3);
 }
 
-public abstract class
-    DynamicViewConfiguration<TModelContainer, TViewModelContainer,
+public abstract class DynamicViewConfiguration<TModelContainer, TViewModelContainer,
                              TViewContainer, TDependency1, TDependency2, TDependency3,
                              TDependency4> : ViewConfiguration
 {
@@ -125,8 +117,7 @@ public abstract class
                                       TDependency4 dependency4);
 }
 
-public abstract class
-    DynamicViewConfiguration<TModelContainer, TViewModelContainer,
+public abstract class DynamicViewConfiguration<TModelContainer, TViewModelContainer,
                              TViewContainer, TDependency1, TDependency2, TDependency3, TDependency4,
                              TDependency5> : ViewConfiguration
 {
